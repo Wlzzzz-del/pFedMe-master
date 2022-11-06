@@ -9,6 +9,7 @@ import os
 from FLAlgorithms.servers.serveravg import FedAvg
 from FLAlgorithms.servers.serverpFedMe import pFedMe
 from FLAlgorithms.servers.serverperavg import PerAvg
+from FLAlgorithms.servers.adaptive_control import Server_adaptive
 from FLAlgorithms.trainmodel.models import *
 from utils.plot_utils import *
 import torch
@@ -50,6 +51,8 @@ def main(dataset, algorithm, model, batch_size, learning_rate, beta, lamda, num_
 
         if(algorithm == "PerAvg"):
             server = PerAvg(device, dataset, algorithm, model, batch_size, learning_rate, beta, lamda, num_glob_iters, local_epochs, optimizer, numusers, i)
+        if(algorithm == "Server_adaptive"):
+            server = Server_adaptive(device, dataset, algorithm, model, batch_size, learning_rate, beta, lamda, num_glob_iters, local_epochs, optimizer, numusers, i)
 
         server.train()
         server.test()

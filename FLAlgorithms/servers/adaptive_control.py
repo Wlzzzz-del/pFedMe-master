@@ -6,7 +6,7 @@ from utils.model_utils import read_data, read_user_data
 
 # Implementation for per-FedAvg Server
 
-class PerAvg(Server):
+class Server_adaptive(Server):
     def __init__(self,device, dataset,algorithm, model, batch_size, learning_rate, beta, lamda, num_glob_iters,
                  local_epochs, optimizer, num_users,times):
         super().__init__(device, dataset,algorithm, model[0], batch_size, learning_rate, beta, lamda, num_glob_iters,
@@ -23,7 +23,7 @@ class PerAvg(Server):
         print("Number of users / total users:",num_users, " / " ,total_users)
         print("Finished creating Local Per-Avg.")
 
-    def send_grads(self):
+    
         assert (self.users is not None and len(self.users) > 0)
         grads = []
         for param in self.model.parameters():
